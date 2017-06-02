@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />		
+		<title>Blockchain</title>
+		
+	<link type='text/css' href="basic.css" rel="stylesheet" media='screen' />
+	<link type='text/css' href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+	
+</head>
+
+<body>
+<script>
+$(document).ready(function(){
+
+   // jQuery methods go here...
+var sData = { json: {
+     "jsonrpc": "2.0",
+     "method": "query",
+     "params": {
+         "type": 1,
+         "chaincodeID": {
+             "name": "5078ced08aaf2b64718ccdf705b6f32f08b629f99ba77472757b49594b20955d6b8d441764567a3dd12de085da899426a45b3b0a2cb93d81df6e404ceca6c1ff"
+         },
+         "ctorMsg": {
+             "function": "query",
+             "args": [
+                 "bob"
+             ]
+         },
+         "secureContext": "user_type1_0"
+     },
+     "id": 1
+ } };
+
+
+	$('button').click(function () {
+      $.post('https://36c591183e7a4d3aad72788dea9dcaa9-vp0.us.blockchain.ibm.com:5004/chaincode', 
+      	sData, 
+ 		function (data) {
+        	console.log(data);
+      	});
+      // console.log("in");
+
+ //      $.ajax({
+ //            url: 'https://36c591183e7a4d3aad72788dea9dcaa9-vp0.us.blockchain.ibm.com:5004/chaincode',
+ //            type: 'post',
+ //            dataType: 'json',
+ //            success: function (data) {
+ //                console.log(data);
+ //            },
+ //            fail:function (data) {
+ //                console.log(data);
+ //            },
+ //            data: {
+ //     "jsonrpc": "2.0",
+ //     "method": "query",
+ //     "params": {
+ //         "type": 1,
+ //         "chaincodeID": {
+ //             "name": "5078ced08aaf2b64718ccdf705b6f32f08b629f99ba77472757b49594b20955d6b8d441764567a3dd12de085da899426a45b3b0a2cb93d81df6e404ceca6c1ff"
+ //         },
+ //         "ctorMsg": {
+ //             "function": "query",
+ //             "args": [
+ //                 "bob"
+ //             ]
+ //         },
+ //         "secureContext": "user_type1_0"
+ //     },
+ //     "id": 1
+ // } 
+ //        });
+    });
+
+
+
+});
+</script>
+
+<center>
+<h2>Blockchain Lab</h2>
+<hr>
+	<button  class="btn btn-success">Button</button>
+		
+</center>
+</body>
+
+</html>
