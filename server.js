@@ -7,6 +7,22 @@
 // server.listen(8080);
 
 var request = require('request');
+var http = require('http');
+var express = require('express');
+
+var app = express();
+
+app.use(express.static(__dirname + '/public')); // exposes index.html, per below
+app.post('/', function (req, res) {
+  request(qa, function (error, response, body) {
+		  if (!error && response.statusCode == 200) {
+		    res.send(body.result.message); 
+		    //console.log(error);
+		  }
+	});
+})
+app.listen(8080);
+
 
 var qa = {
   uri: 'https://36c591183e7a4d3aad72788dea9dcaa9-vp0.us.blockchain.ibm.com:5004/chaincode',
@@ -55,19 +71,3 @@ var qb = {
      "id": 1
  		} 
 };
-
-request(qa, function (error, response, body) {
-  if (!error && response.statusCode == 200) {
-    console.log(body.result.message) // Print the shortened url.
-  }else{
-    console.log(error);
-  }
-});
-
-request(qb, function (error, response, body) {
-  if (!error && response.statusCode == 200) {
-    console.log(body.result.message) // Print the shortened url.
-  }else{
-    console.log(error);
-  }
-});

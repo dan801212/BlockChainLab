@@ -16,64 +16,13 @@
 <script>
 $(document).ready(function(){
 
-   // jQuery methods go here...
-var sData = { json: {
-     "jsonrpc": "2.0",
-     "method": "query",
-     "params": {
-         "type": 1,
-         "chaincodeID": {
-             "name": "5078ced08aaf2b64718ccdf705b6f32f08b629f99ba77472757b49594b20955d6b8d441764567a3dd12de085da899426a45b3b0a2cb93d81df6e404ceca6c1ff"
-         },
-         "ctorMsg": {
-             "function": "query",
-             "args": [
-                 "bob"
-             ]
-         },
-         "secureContext": "user_type1_0"
-     },
-     "id": 1
- } };
-
 
 	$('button').click(function () {
-      $.post('https://36c591183e7a4d3aad72788dea9dcaa9-vp0.us.blockchain.ibm.com:5004/chaincode', 
-      	sData, 
+      $.post('http://localhost:8080/',  
  		function (data) {
         	console.log(data);
+        	$('#target').text(data);
       	});
-      // console.log("in");
-
- //      $.ajax({
- //            url: 'https://36c591183e7a4d3aad72788dea9dcaa9-vp0.us.blockchain.ibm.com:5004/chaincode',
- //            type: 'post',
- //            dataType: 'json',
- //            success: function (data) {
- //                console.log(data);
- //            },
- //            fail:function (data) {
- //                console.log(data);
- //            },
- //            data: {
- //     "jsonrpc": "2.0",
- //     "method": "query",
- //     "params": {
- //         "type": 1,
- //         "chaincodeID": {
- //             "name": "5078ced08aaf2b64718ccdf705b6f32f08b629f99ba77472757b49594b20955d6b8d441764567a3dd12de085da899426a45b3b0a2cb93d81df6e404ceca6c1ff"
- //         },
- //         "ctorMsg": {
- //             "function": "query",
- //             "args": [
- //                 "bob"
- //             ]
- //         },
- //         "secureContext": "user_type1_0"
- //     },
- //     "id": 1
- // } 
- //        });
     });
 
 
@@ -85,7 +34,9 @@ var sData = { json: {
 <h2>Blockchain Lab</h2>
 <hr>
 	<button  class="btn btn-success">Button</button>
+	<div id='target'>
 		
+	</div>
 </center>
 </body>
 
