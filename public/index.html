@@ -17,14 +17,31 @@
 $(document).ready(function(){
 
 
-	$('button').click(function () {
-      $.post('http://localhost:8080/',  
- 		function (data) {
-        	console.log(data);
-        	$('#target').text(data);
-      	});
-    });
+	// $('button').click(function () {
+ //      $.post('http://localhost:8080/',  
+ // 		function (data) {
+ //        	console.log(data);
+ //        	$('#target').text(data);
+ //      	});
+ //    });
 
+	$( "#searchForm" ).submit(function( event ) {
+ 
+	  // Stop form submitting normally
+	  event.preventDefault();
+	 
+	  // Get some values from elements on the page:
+	  var $form = $( this ),
+	    term = $form.find( "input[name='s']" ).val();
+	 
+	  // Send the data using post
+	  var posting = $.post( 'http://localhost:8080/', { "user": term } );
+	 	console.log(term);
+	  // Put the results in a div
+	  posting.done(function( data ) {
+	    $('#target').text(data);
+	  });
+	});
 
 
 });
@@ -33,7 +50,12 @@ $(document).ready(function(){
 <center>
 <h2>Blockchain Lab</h2>
 <hr>
-	<button  class="btn btn-success">Button</button>
+	<!-- <button  class="btn btn-success">Button</button> -->
+	<form action="/" id="searchForm">
+	  	<input type="text" name="s" placeholder="Search...">
+	  	<input type="submit" value="Search">
+	</form>
+	
 	<div id='target'>
 		
 	</div>
